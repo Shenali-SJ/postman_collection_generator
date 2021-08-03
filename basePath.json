@@ -1,0 +1,24 @@
+{
+ "item": [
+  {
+   "name": "",
+   "request": {
+    "method": "GET",
+    "header": null,
+    "body": {
+     "raw": ""
+    },
+    "url": {
+     "raw": "",
+     "protocol": "http",
+     "host": "localhost:1323",
+     "port": "",
+     "path": [
+      "/"
+     ]
+    }
+   },
+   "response": []
+  }
+ ]
+}

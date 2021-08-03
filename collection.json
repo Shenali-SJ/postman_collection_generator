@@ -1,0 +1,82 @@
+{
+  "info": {
+    "_postman_id": "cd6cec31-1099-4a11-bdb7-2649337cb991",
+    "name": "automate-go-1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "http://localhost:1323",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:1323",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1323"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:1323/user?name=Shaini",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:1323/user?name=Shaini",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1323",
+          "path": [
+            "user"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "Shaini"
+            }
+          ]
+        },
+        "description": "Uses query parameter. Returns welcome message with the provided name. "
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:1323/user/create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Rachel\",\r\n    \"age\": 26\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:1323/user/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1323",
+          "path": [
+            "user",
+            "create"
+          ]
+        },
+        "description": "Create a new user. The user created will be returned."
+      },
+      "response": []
+    }
+  ]
+}

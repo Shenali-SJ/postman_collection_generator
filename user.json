@@ -1,0 +1,32 @@
+{
+ "item": [
+  {
+   "name": "name=Phoebe",
+   "request": {
+    "method": "GET",
+    "header": null,
+    "body": {
+     "raw": ""
+    },
+    "url": {
+     "raw": "name=Phoebe",
+     "protocol": "http",
+     "host": "localhost:1323",
+     "port": "",
+     "query": [
+      {
+       "key": "name",
+       "value": [
+        "Phoebe"
+       ]
+      }
+     ],
+     "path": [
+      "/user"
+     ]
+    }
+   },
+   "response": []
+  }
+ ]
+}

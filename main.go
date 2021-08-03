@@ -2,6 +2,7 @@ package main
 
 import (
 	"automaticPostmanCollection/automate"
+	"fmt"
 	"github.com/labstack/echo"
 	"net/http"
 )
@@ -32,7 +33,6 @@ func main() {
 func getHome(c echo.Context) error {
 	// Generates postman collection based on the specific end point.
 	automate.CreateCollection(c, port, getHomeFileName)
-
 	return c.String(http.StatusOK, "Welcome")
 }
 
@@ -49,11 +49,12 @@ func createUser(c echo.Context) error {
 	user := new(User)
 
 	if err := c.Bind(user); err != nil {
-		return err
+		fmt.Println(err)
+		return err   //TODO: http error - 400
 	}
 
 	// Generates postman collection based on the specific end point.
-	automate.CreateCollection(c, port, createUserFileName)
+	automate.CreateCollection(c, port, createUserFileName, user)
 
 	return c.JSON(http.StatusOK, user)
 }

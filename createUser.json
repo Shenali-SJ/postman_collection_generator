@@ -1,0 +1,31 @@
+{
+ "item": [
+  {
+   "name": "",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": [
+       "application/json"
+      ]
+     }
+    ],
+    "body": {
+     "raw": "[{\"name\":\"Rachel\",\"age\":26}]"
+    },
+    "url": {
+     "raw": "",
+     "protocol": "http",
+     "host": "localhost:1323",
+     "port": "",
+     "path": [
+      "/user/create"
+     ]
+    }
+   },
+   "response": []
+  }
+ ]
+}

@@ -1,8 +1,8 @@
 package automate
 
 import (
-	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/labstack/echo"
 	"io/ioutil"
 )
@@ -39,7 +39,7 @@ type URL struct {
 	Raw string      `json:"raw"`
 	Protocol string `json:"protocol"`
 	Host string     `json:"host"`
-	Port string     `json:"port,omitempty"`
+	Port string     `json:"port"`
 	Query []Query   `json:"query,omitempty"`
 	Path []string   `json:"path,omitempty"`
 }
@@ -50,23 +50,30 @@ type Query struct {
 }
 
 // CreateCollection generates a postman collection by extracting the HTTP request data from the request
-func CreateCollection(c echo.Context, runningPort string, fileName string) {
+func CreateCollection(c echo.Context, runningPort string, fileName string, bodyTest ...interface{}) {
 	name := c.Request().URL.RawQuery
 	method := c.Request().Method
-	protocol := c.Request().URL.Scheme
+	protocol := c.Scheme()
 	host := c.Request().Host
 
 	header := c.Request().Header
 	var headers []Header
 	for key, value := range header {
-		headerValue := Header{
-			Key:   key,
-			Value: value,
+		if key=="Content-Type" {
+			headerValue := Header{
+				Key:   key,
+				Value: value,
+			}
+			headers  = append(headers, headerValue)
 		}
-		headers  = append(headers, headerValue)
 	}
 
 	var body string
+
+	bodyContent, err := json.Marshal(bodyTest)
+	if err != nil {
+		fmt.Println(err)  //FIXME: add logs
+	}
 
 	port := runningPort
 	path := c.Request().URL.Path
@@ -85,11 +92,7 @@ func CreateCollection(c echo.Context, runningPort string, fileName string) {
 	response := []string{}
 
 	if method == "POST" || method == "PUT" || method == "PATCH" {
-
-		buf := new(bytes.Buffer)
-		buf.ReadFrom(c.Request().Body)
-		body = buf.String()
-
+		body = string(bodyContent)
 	}
 
 	apiCall := APICall{
